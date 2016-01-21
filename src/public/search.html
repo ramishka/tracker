@@ -1,11 +1,19 @@
 <div class="row">
-    <h1 class="col-md-6">Add a show</h1>
+    <h1 class="col-md-6">Discover shows</h1>
     <search-box class="col-md-6" (runSearch)="searchShows($event)"></search-box>
 </div>
 <br>
 <show-list [shows]="shows"></show-list>
+
+
 <div
     class="alert alert-danger"
     [hidden]="!error && (!shows || shows.length > 0)">
     Sorry. We couldn't find any TV shows that match your search term.'
+</div>
+
+<div
+    class="alert alert-warning"
+    [hidden]="( searchRun )">
+    Discover and track thousands of TV shows. Search for your favorite series now.
 </div>

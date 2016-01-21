@@ -16,6 +16,8 @@ export class Search {
 
   public shows: Show[];
   public error: string;
+  public searchRun : boolean = false;
+  
 
   constructor(private tvAPI: TVAPI) {}
 
@@ -25,7 +27,8 @@ export class Search {
   }
 
   searchShows(text: string): void {
-
+    this.searchRun = true;
+    
     this.resetSearch();
     this
       .tvAPI
