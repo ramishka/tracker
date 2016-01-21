@@ -1,8 +1,31 @@
-<h1>Episode Guide</h1>
+<style>
+.lbl.outline {
+    background: none;
+    padding: 5px 5px;
+	font-size:12px;
+}
+.lbl-primary.outline {
+    border: 1px solid #0099cc;
+    color: #0099cc;
+}
+.lbl-primary.outline:hover, .lbl-primary.outline:focus, .lbl-primary.outline:active, .lbl-primary.outline.active, .open > .dropdown-toggle.lbl-primary {
+    color: #33a6cc;
+    border-color: #33a6cc;
+}
+
+
+.lbl-primary.outline:active, .lbl-primary.outline.active {
+    border-color: #007299;
+    color: #007299;
+    box-shadow: none;
+}
+</style>
+
+<h1 style="font-size:28px;text-shadow:2px 2px 2px #666;padding-top:20px;padding-bottom:20px">Episode Guide</h1>
 <table class="table">
     <thead>
     <tr>
-        <th>Name</th>
+        <th>Title</th>
         <th>Season</th>
         <th>Number</th>
         <th>Air date</th>
@@ -12,12 +35,12 @@
     </thead>
     <tbody>
     <tr *ngFor="#episode of episodes | async">
-        <td>{{ episode.name }}</td>
-        <td>{{ episode.season }}</td>
-        <td>{{ episode.number }}</td>
-        <td>{{ episode.airstamp | dateFormat | date:'fullDate' }}</td>
-        <td>{{ episode.runtime }}</td>
-        <td [innerHtml]="episode.summary"></td>
+        <td style="width:10%">{{ episode.name }}</td>
+        <td style="width:5%">{{ episode.season }}</td>
+        <td style="width:5%">{{ episode.number }}</td>
+        <td style="width:30%"><span class="lbl lbl-primary outline">{{ episode.airstamp | dateFormat | date:'fullDate' }}</span></td>
+        <td style="width:5%">{{ episode.runtime }}</td>
+        <td style="width:45%" [innerHtml]="episode.summary"></td>
     </tr>
     </tbody>
 </table>
