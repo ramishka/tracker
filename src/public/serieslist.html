@@ -1,3 +1,102 @@
+
+<style>
+ /***********************
+  OUTLINE BUTTONS
+************************/
+
+.btn.outline {
+    background: none;
+    padding: 5px 15px;
+	font-size:15px;
+}
+.btn-primary.outline {
+    border: 1px solid #0099cc;
+    color: #0099cc;
+}
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+    color: #33a6cc;
+    border-color: #33a6cc;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+    border-color: #007299;
+    color: #007299;
+    box-shadow: none;
+}
+
+.btn.outline2 {
+    background: none;
+    padding: 5px 15px;
+	font-size:15px;
+}
+.btn-primary.outline2 {
+    border: 1px solid #FF0000;
+    color: #FF0000;
+}
+.btn-primary.outline2:hover, .btn-primary.outline2:focus, .btn-primary.outline2:active, .btn-primary.outline2.active, .open > .dropdown-toggle.btn-primary {
+    color: #FF0000;
+    border-color: #FF0000;
+}
+.btn-primary.outline2:active, .btn-primary.outline2.active {
+    border-color: #FF0000;
+    color: #FF0000;
+    box-shadow: none;
+}
+
+.lbl.outline {
+    background: none;
+    padding: 5px 5px;
+	font-size:12px;
+}
+.lbl-primary.outline {
+    border: 1px solid #0099cc;
+    color: #0099cc;
+}
+.lbl-primary.outline:hover, .lbl-primary.outline:focus, .lbl-primary.outline:active, .lbl-primary.outline.active, .open > .dropdown-toggle.lbl-primary {
+    color: #33a6cc;
+    border-color: #33a6cc;
+}
+
+
+.lbl-primary.outline:active, .lbl-primary.outline.active {
+    border-color: #007299;
+    color: #007299;
+    box-shadow: none;
+}
+
+/***********************
+  GRADIENT BUTTONS
+************************/
+.btn-primary.gradient {
+    background: -moz-linear-gradient(top,  #33a6cc 50%, #0099cc 50%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#33a6cc), color-stop(50%,#0099cc)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #33a6cc 50%,#0099cc 50%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #33a6cc 50%,#0099cc 50%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #33a6cc 50%,#0099cc 50%); /* IE10+ */
+    background: linear-gradient(to bottom,  #33a6cc 50%,#0099cc 50%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33a6cc', endColorstr='#0099cc',GradientType=0 ); /* IE6-9 */
+	font-size:15px;
+	padding: 5px 15px;
+}
+.btn-primary.gradient:hover, .btn-primary.gradient:focus, .btn-primary.gradient:active, .btn-primary.gradient.active, .open > .dropdown-toggle.btn-primary {
+    background: -moz-linear-gradient(top,  #66b2cc 50%, #33a6cc 50%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#66b2cc), color-stop(50%,#33a6cc)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #66b2cc 50%,#33a6cc 50%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #66b2cc 50%,#33a6cc 50%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #66b2cc 50%,#33a6cc 50%); /* IE10+ */
+    background: linear-gradient(to bottom,  #66b2cc 50%,#33a6cc 50%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#66b2cc', endColorstr='#33a6cc',GradientType=0 ); /* IE6-9 */
+}
+.btn-primary.gradient:active, .btn-primary.gradient.active {
+    background: -moz-linear-gradient(top,  #267c99 50%, #007299 50%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#267c99), color-stop(50%,#007299)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #267c99 50%,#007299 50%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #267c99 50%,#007299 50%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #267c99 50%,#007299 50%); /* IE10+ */
+    background: linear-gradient(to bottom,  #267c99 50%,#007299 50%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#267c99', endColorstr='#007299',GradientType=0 ); /* IE6-9 */
+}
+
+</style>
 <table class="table" [hidden]="!shows || shows.length === 0">
     <thead>
     <tr>
@@ -6,8 +105,9 @@
         <th>Synopsis</th>
         <th>Status</th>
         <th>Next Episode</th>
+		<th>Channel</th>
         <th></th>
-        <th>Channel</th>
+        
     </tr>
     </thead>
     <tbody>
@@ -20,11 +120,11 @@
         <td style="width:10%">{{ show.name }}</td>        
         
         <!--<td style="width:40%" [innerHtml]>{{ show.summary | truncate : 200 }}</td>-->
-        <td [innerHtml]="show.summary | truncate : 200"></td>
+        <td [innerHtml]="show.summary | truncate : 200" style="width:40%"></td>
         
         <td style="width:10%">
             <span
-                class="label"
+                class="lbl lbl-primary lbl-lg outline"
                 [class.label-primary]="show.status === 'Running'"
                 [class.label-warning]="show.status !== 'Running'">
                 {{ show.status }}
@@ -32,23 +132,27 @@
         </td>
         
         <td style="width:10%">
-            <span [hidden]="!show?.nextEpisode?.airstamp">{{ show?.nextEpisode?.airstamp | dateFormat | date:'fullDate' }}</span>
+            <span class="btn btn-primary btn-lg gradient" [hidden]="!show?.nextEpisode?.airstamp">{{ show?.nextEpisode?.airstamp | dateFormat | date:'fullDate' }}</span>
             <span [hidden]="show?.nextEpisode?.airstamp">Unknown</span>
         </td>
-        
+		
+        <td style="width:5%">{{ show.network?.name }}</td>
+		
         <td style="width: 15%">
-            <button class="btn btn-primary" (click)="subscribe(show)" [hidden]="isSubscribed(show)">
-                Watchlist+
+            <button class="btn btn-primary btn-lg outline" (click)="subscribe(show)" [hidden]="isSubscribed(show)" style="width:100px">
+                Watchlist +
             </button>
-            <button class="btn btn-danger" (click)="unsubscribe(show)" [hidden]="!isSubscribed(show)">
-                Watchlist-
+			<tr><td style="padding:1px 0px 1px 0px"></td></tr>
+            <button class="btn btn-primary btn-lg outline2" (click)="unsubscribe(show)" [hidden]="!isSubscribed(show)" style="width:100px">
+                Watchlist -
             </button>
-            <button class="btn btn-info" [routerLink]="['/Episodes', {id: show.id}]">
+			<tr><td style="padding:1px 0px 1px 0px"></td></tr>
+            <button class="btn btn-primary btn-lg outline" [routerLink]="['/Episodes', {id: show.id}]" style="width:100px">
                 Episodes
             </button>
         </td>
         
-        <td style="width:5%">{{ show.network?.name }}</td>
+        
     </tr>
     </tbody>
 </table>
