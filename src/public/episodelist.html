@@ -1,0 +1,23 @@
+<h1>View episodes</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Season</th>
+        <th>Number</th>
+        <th>Air date</th>
+        <th>Runtime</th>
+        <th>Summary</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="#episode of episodes | async">
+        <td>{{ episode.name }}</td>
+        <td>{{ episode.season }}</td>
+        <td>{{ episode.number }}</td>
+        <td>{{ episode.airstamp | dateFormat | date:'fullDate' }}</td>
+        <td>{{ episode.runtime }}</td>
+        <td [innerHtml]="episode.summary"></td>
+    </tr>
+    </tbody>
+</table>

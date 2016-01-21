@@ -43,9 +43,9 @@
             <button class="btn btn-danger" (click)="unsubscribe(show)" [hidden]="!isSubscribed(show)">
                 Remove from WatchList
             </button>
-            <!--<button class="btn btn-info" [routerLink]="['/Episodes', {id: show.id}]">
-                Episode Guide
-            </button>-->
+            <button class="btn btn-info" [routerLink]="['/Episodes', {id: show.id}]">
+                Episodes
+            </button>
         </td>
         
         <td style="width:5%">{{ show.network?.name }}</td>
