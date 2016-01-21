@@ -4,3 +4,4 @@ export * from './search';
 export * from './searchbox';
 export * from './serieslist';
 export * from './subscribedlist';
+export * from './latestlist';

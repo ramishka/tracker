@@ -25,4 +25,7 @@ export class TVAPI {
     return this.http.get(`${TVAPI.TVMAZE_API_URL}shows/${id}/episodes`).map((res: any) => res.json());
   }
 
+  getLatestUpdates () : Observable<any> {
+      return this.http.get(`${TVAPI.TVMAZE_API_URL}shows/`).map((res: any) => res.json());
+  }
 }
