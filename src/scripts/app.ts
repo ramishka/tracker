@@ -21,7 +21,8 @@ import {Navbar} from './ui/navbar';
 
 @RouteConfig([
   new Route({path: '/search', component: Search, name: 'Search'}),
-  new Route({path: '/episodes/:id', component: EpisodeList, name: 'Episodes'})
-  //new Route({path: '/', component: SubscribedList, name: 'Subscribed'})
+  new Route({path: '/episodes/:id', component: EpisodeList, name: 'Episodes'}),
+  new Route({path: '/subscribed', component: SubscribedList, name: 'Watchlist'}),
+  new Route({path: '/', component: SubscribedList, name: 'Home'})
 ])
 export class AppComponent {}
