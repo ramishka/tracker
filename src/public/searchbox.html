@@ -1,0 +1,13 @@
+<form (submit)="$event.preventDefault(); runSearch.next(searchForm.value.query)" [ngFormModel]="searchForm">
+    <div class="input-group">
+    <input type="search" class="form-control" ngControl="query">
+    <span class="input-group-btn">
+        <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="!searchForm.valid">
+        Search
+        </button>
+    </span>
+    </div>
+</form>

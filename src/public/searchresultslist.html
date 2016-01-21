@@ -1,0 +1,54 @@
+<table class="table" [hidden]="!shows || shows.length === 0">
+    <thead>
+    <tr>
+        <th>Poster</th>
+        <th>Name</th>
+        <th>Synopsis</th>
+        <th>Status</th>
+        <th>Next Episode</th>
+        <th></th>
+        <th>Channel</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="#show of shows" [hidden]="!show.image?.medium">        
+        
+        <td style="width:10%">
+        <img [src]="show.image?.medium" width="60">
+        </td>
+        
+        <td style="width:10%">{{ show.name }}</td>        
+        
+        <!--<td style="width:40%" [innerHtml]>{{ show.summary | truncate : 200 }}</td>-->
+        <td [innerHtml]="show.summary | truncate : 200"></td>
+        
+        <td style="width:10%">
+            <span
+                class="label"
+                [class.label-primary]="show.status === 'Running'"
+                [class.label-warning]="show.status !== 'Running'">
+                {{ show.status }}
+            </span>
+        </td>
+        
+        <td style="width:10%">
+            <span [hidden]="!show?.nextEpisode?.airstamp">{{ show?.nextEpisode?.airstamp | dateFormat | date:'fullDate' }}</span>
+            <span [hidden]="show?.nextEpisode?.airstamp">Unknown</span>
+        </td>
+        
+        <td style="width: 15%">
+            <button class="btn btn-primary" (click)="subscribe(show)" [hidden]="isSubscribed(show)">
+                Add to Watchlist
+            </button>
+            <button class="btn btn-danger" (click)="unsubscribe(show)" [hidden]="!isSubscribed(show)">
+                Remove from WatchList
+            </button>
+            <!--<button class="btn btn-info" [routerLink]="['/Episodes', {id: show.id}]">
+                Episode Guide
+            </button>-->
+        </td>
+        
+        <td style="width:5%">{{ show.network?.name }}</td>
+    </tr>
+    </tbody>
+</table>

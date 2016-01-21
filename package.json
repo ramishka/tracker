@@ -1,0 +1,32 @@
+{
+  "name": "tv-tracker",
+  "private": true,
+  "description": "TV tracker",  
+  "license": "MIT",
+  "dependencies": {
+    "angular2": "2.0.0-beta.1",
+    "bootstrap": "4.0.0-alpha.2",
+    "es6-shim": "0.33.13",
+    "es7-shim": "5.0.0",
+    "lodash": "3.10.1",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.0",
+    "zone.js": "0.5.10"
+  },
+  "devDependencies": {
+    "css-loader": "~0.23.0",
+    "node-sass": "~3.4.2",
+    "sass-loader": "~3.1.2",
+    "style-loader": "~0.13.0",
+    "ts-loader": "~0.7.2",
+    "tslint": "~3.2.0",
+    "tslint-loader": "~2.1.0",
+    "typescript": "~1.7.5",
+    "webpack": "~1.12.9",
+    "webpack-dev-server": "~1.14.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --progress",
+    "build": "webpack -p"
+  }
+}
