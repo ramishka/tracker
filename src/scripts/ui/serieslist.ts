@@ -14,11 +14,11 @@ import {DateFormatPipe} from '../pipes/dateformat';
 
 @View ( {
     directives: [COMMON_DIRECTIVES, ROUTER_DIRECTIVES],
-    templateUrl: 'searchresultslist.html',
+    templateUrl: 'serieslist.html',
     pipes : [TruncatePipe, DateFormatPipe]
 })
 
-export class SearchResultsList {
+export class SeriesList {
 
   @Input() public shows: Array<Show>;
   @Output('unsubscribe') public unsubscribeCallback: EventEmitter<any> = new EventEmitter();

@@ -1,6 +1,6 @@
 import {Component, View} from 'angular2/core';
 import {TVAPI} from './../providers/providers';
-import {SearchResultsList, SearchBox} from './uicomponents';
+import {SeriesList, SearchBox} from './uicomponents';
 import {Show} from '../data/show';
 
 @Component({
@@ -8,7 +8,7 @@ import {Show} from '../data/show';
 })
 
 @View ( {
-    directives: [SearchResultsList, SearchBox],
+    directives: [SeriesList, SearchBox],
     templateUrl: 'search.html'
 })
 
