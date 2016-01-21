@@ -1,7 +1,7 @@
-<h1>Subscribed shows</h1>
+<h1>Watchlist</h1>
 <show-list [shows]="subscribedShows" (unsubscribe)="unsubscribe($event)"></show-list>
 <div
     class="alert alert-warning"
     [hidden]="subscribedShows.length > 0">
-    You haven't yet subscribed to any shows. <a [routerLink]="['/Search']">Add some now.</a>
+    You havent added any shows to your watchlist. <a [routerLink]="['/Search']">Discover shows now.</a>
 </div>

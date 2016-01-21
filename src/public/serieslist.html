@@ -38,10 +38,10 @@
         
         <td style="width: 15%">
             <button class="btn btn-primary" (click)="subscribe(show)" [hidden]="isSubscribed(show)">
-                Add to Watchlist
+                Watchlist+
             </button>
             <button class="btn btn-danger" (click)="unsubscribe(show)" [hidden]="!isSubscribed(show)">
-                Remove from WatchList
+                Watchlist-
             </button>
             <button class="btn btn-info" [routerLink]="['/Episodes', {id: show.id}]">
                 Episodes
