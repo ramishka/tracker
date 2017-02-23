@@ -5,18 +5,20 @@ node {
         echo "build step 1"
         sh'''
             #!/bin/bash
+            tokenval = f42fbf09691d29757203edf4ac940fe8d6df10f8xxxx
+            tokenval = ${v::-4}
             PRNO=`grep -o '[0-9]*' <<< $sha1`
-            curl -s -H "Authorization: token 09628938765f48c189600e81725dc0d6ee1d1dbb" https://api.github.com/repos/tymspy/ionic-ci-sample/pulls/$PRNO>gitjson.txt && COMMITSHA=$(python -c "import json; f=open('./gitjson.txt', 'r'); d=json.loads(f.read()); print(d['head']['sha'])")
+            curl -s -H "Authorization: token $tokenval" https://api.github.com/repos/tymspy/ionic-ci-sample/pulls/$PRNO>gitjson.txt && COMMITSHA=$(python -c "import json; f=open('./gitjson.txt', 'r'); d=json.loads(f.read()); print(d['head']['sha'])")
             rm gitjson.txt
 
-            curl -XPOST -H "Authorization: token 09628938765f48c189600e81725dc0d6ee1d1dbb" https://api.github.com/repos/tymspy/ionic-ci-sample/statuses/$COMMITSHA -d '{
+            curl -XPOST -H "Authorization: token $tokenval" https://api.github.com/repos/tymspy/ionic-ci-sample/statuses/$COMMITSHA -d '{
                 "state": "pending",
                 "target_url": "http://all.creately.com:9000/job/PRValidator",
                 "description": "Linting started",
                 "context": "jenkins-ci-code-quality"
             }'
 
-            curl -XPOST -H "Authorization: token 09628938765f48c189600e81725dc0d6ee1d1dbb" https://api.github.com/repos/tymspy/ionic-ci-sample/statuses/$COMMITSHA -d '{
+            curl -XPOST -H "Authorization: token $tokenval" https://api.github.com/repos/tymspy/ionic-ci-sample/statuses/$COMMITSHA -d '{
                 "state": "pending",
                 "target_url": "http://all.creately.com:9000/job/PRValidator",
                 "description": "Started Testing",
