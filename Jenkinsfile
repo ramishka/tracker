@@ -25,6 +25,7 @@ node {
                 "context": "jenkins-ci-unit-test"
             }'
         '''
+    }
     stage('Lint'){
         echo "lint step 1"
     }
