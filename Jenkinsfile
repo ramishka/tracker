@@ -6,7 +6,7 @@ node {
         sh'''
             #!/bin/bash
             tokenval = f42fbf09691d29757203edf4ac940fe8d6df10f8xxxx
-            tokenval = ${v::-4}
+            tokenval = ${tokenval::-4}
             PRNO=`grep -o '[0-9]*' <<< $sha1`
             curl -s -H "Authorization: token $tokenval" https://api.github.com/repos/tymspy/ionic-ci-sample/pulls/$PRNO>gitjson.txt && COMMITSHA=$(python -c "import json; f=open('./gitjson.txt', 'r'); d=json.loads(f.read()); print(d['head']['sha'])")
             rm gitjson.txt
