@@ -1,12 +1,8 @@
 node {
         stage( 'Checkout')
         checkout scm
-
-        stage([$class: 'GitHubCommitStatusSetter',
-        contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'preflight-build'],
-        statusResultSource: [$class: 'ConditionalStatusResultSource',
-            results: [[$class: 'AnyBuildResult', message: 'Preflight build successful', state: 'SUCCESS']]]])    
-        
+        stage ( 'Linting')
+        setGitHubPullRequestStatus context: 'Linting', message: 'Linting started', state: 'PENDING'
         stage('Build') {   
         echo "build step 1"
         sh'''
