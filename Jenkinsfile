@@ -8,6 +8,7 @@ node {
         sh'''
             #!/bin/bash
             echo $BRANCH_NAME
+            echo $GITHUB_BRANCH_HEAD_SHA
             tokenv=f42fbf09691d29757203edf4ac940fe8d6df10f8xxxx
             tokenval=${tokenv::-4}
             echo $(git ls-remote --heads git@github.com:ramishka/tracker.git | grep "refs/heads/master$" | awk '{print $1}')
