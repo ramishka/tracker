@@ -2,11 +2,8 @@ node {
     stage( 'Checkout')
         checkout scm
     stage ( "List variable") {
-       sh 'env > env.txt'
-        readFile('env.txt').split("\r?\n").each {
-            println it
-        }
-    }
+        pullRequestSetCommitStatus state: 'SUCCESS', context: 'mytests', message: 'Tests passed'
+    }               
     stage('Build') {   
         echo "build step 1"
         sh'''
