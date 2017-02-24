@@ -25,6 +25,8 @@ node {
                 "description": "Started Testing",
                 "context": "jenkins-ci-unit-test"
             }'
+
+            exit 0
         '''
     }
     stage('Lint'){
