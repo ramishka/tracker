@@ -1,5 +1,8 @@
 node {
-        stage ('Print')
+        stage ('Print') {
+            echo ('change id ')
+            sh 'echo ( $CHANGE_ID )'
+        }
         stage( 'Checkout') {
             sh 'env > env.txt' 
             for (String i : readFile('env.txt').split("\r?\n")) {
