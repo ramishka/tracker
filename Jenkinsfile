@@ -1,7 +1,7 @@
 node {
         stage ('Print') {
             echo ('change id ')
-            sh 'echo ( $CHANGE_ID )'
+            sh 'echo $CHANGE_ID'
         }
         stage( 'Checkout') {
             sh 'env > env.txt' 
