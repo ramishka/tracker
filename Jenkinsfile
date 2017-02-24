@@ -1,8 +1,8 @@
 node {
     stage( 'Checkout')
         checkout scm
-    stage ( "List variable") {
-        pullRequestSetCommitStatus state: 'SUCCESS', context: 'mytests', message: 'Tests passed'
+    stage ( "Linting") {
+        setGitHubPullRequestStatus context: 'Linting', message: 'Linting started', state: 'PENDING'
     }               
     stage('Build') {   
         echo "build step 1"
