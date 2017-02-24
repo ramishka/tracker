@@ -2,8 +2,14 @@ node {
     stage( 'Checkout')
         checkout scm
     stage ( "Linting") {
-        setGitHubPullRequestStatus context: 'Linting', message: 'Linting started', state: 'PENDING'
-    }               
+            [$class: 'GitHubCommitStatusSetter',
+            contextSource: [$class: 'ManuallyEnteredCommitContextSource',
+            context: 'Test Context'],
+            statusResultSource: [$class: 'ConditionalStatusResultSource',
+            results: [[$class: 'AnyBuildResult',
+            message: 'test message',
+            state: 'SUCCESS']]]]
+        }               
     stage('Build') {   
         echo "build step 1"
         sh'''
