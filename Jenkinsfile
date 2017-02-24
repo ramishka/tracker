@@ -1,5 +1,11 @@
 node {
-        stage( 'Checkout')
+        stage ('Print')
+        stage( 'Checkout') {
+            sh 'env > env.txt' 
+            for (String i : readFile('env.txt').split("\r?\n")) {
+                println i
+            }
+        }
         checkout scm
         //stage ( 'Linting')
         //setGitHubPullRequestStatus context: 'Linting', message: 'Linting started', state: 'PENDING'
@@ -7,7 +13,6 @@ node {
         echo "build step 1"
         sh'''
             echo $BRANCH_NAME
-            echo $GITHUB_BRANCH_HEAD_SHA
             tokenv=f42fbf09691d29757203edf4ac940fe8d6df10f8xxxx
             tokenval=${tokenv::-4}
             sha1=$(git ls-remote --heads git@github.com:ramishka/tracker.git | grep "refs/heads/$BRANCH_NAME$" | awk '{print $1}')
