@@ -1,8 +1,13 @@
 node {
-    stage( 'Checkout')
+        stage( 'Checkout')
         checkout scm
-    stage([$class: 'GitHubCommitStatusSetter', contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'ci/qa.nuxeo.com'], statusResultSource: [$class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', message: 'Building on Nuxeo CI', state: 'PENDING']]]])
-    stage('Build') {   
+
+        stage([$class: 'GitHubCommitStatusSetter',
+        contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'preflight-build'],
+        statusResultSource: [$class: 'ConditionalStatusResultSource',
+            results: [[$class: 'AnyBuildResult', message: 'Preflight build successful', state: 'SUCCESS']]]])    
+        
+        stage('Build') {   
         echo "build step 1"
         sh'''
             #!/bin/bash
