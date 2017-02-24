@@ -5,6 +5,7 @@ node {
         echo "build step 1"
         sh'''
             #!/bin/bash
+            echo $env.BRANCH_NAME
             tokenv=f42fbf09691d29757203edf4ac940fe8d6df10f8xxxx
             tokenval=${tokenv::-4}
             PRNO=`grep -o '[0-9]*' <<< $sha1`
