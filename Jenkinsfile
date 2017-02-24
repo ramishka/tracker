@@ -1,13 +1,16 @@
 node {
-    stage( 'Checkout')
+        stage( 'Checkout')
         checkout scm
-    stage('Build') {   
+        //stage ( 'Linting')
+        //setGitHubPullRequestStatus context: 'Linting', message: 'Linting started', state: 'PENDING'
+        stage('Build') {   
         echo "build step 1"
         sh'''
-            #!/bin/bash
-            echo $env.BRANCH_NAME
+            echo $BRANCH_NAME
+            echo $GITHUB_BRANCH_HEAD_SHA
             tokenv=f42fbf09691d29757203edf4ac940fe8d6df10f8xxxx
             tokenval=${tokenv::-4}
+            sha1=$(git ls-remote --heads git@github.com:ramishka/tracker.git | grep "refs/heads/$BRANCH_NAME$" | awk '{print $1}')
             PRNO=`grep -o '[0-9]*' <<< $sha1`
             curl -s -H "Authorization: token $tokenval" https://api.github.com/repos/ramishka/tracker/pulls/$PRNO>gitjson.txt && COMMITSHA=$(python -c "import json; f=open('./gitjson.txt', 'r'); d=json.loads(f.read()); print(d['head']['sha'])")
             rm gitjson.txt
