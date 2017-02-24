@@ -1,7 +1,7 @@
 node {
     stage( 'Checkout')
         checkout scm
-    stage ( "List variable")
+    stage ( "List variable") {
        sh 'env > env.txt'
         readFile('env.txt').split("\r?\n").each {
             println it
