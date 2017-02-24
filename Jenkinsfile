@@ -1,15 +1,7 @@
 node {
     stage( 'Checkout')
         checkout scm
-    stage ( "Linting") {
-            [$class: 'GitHubCommitStatusSetter',
-            contextSource: [$class: 'ManuallyEnteredCommitContextSource',
-            context: 'Test Context'],
-            statusResultSource: [$class: 'ConditionalStatusResultSource',
-            results: [[$class: 'AnyBuildResult',
-            message: 'test message',
-            state: 'SUCCESS']]]]
-        }               
+    stage([$class: 'GitHubCommitStatusSetter', contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'ci/qa.nuxeo.com'], statusResultSource: [$class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', message: 'Building on Nuxeo CI', state: 'PENDING']]]])
     stage('Build') {   
         echo "build step 1"
         sh'''
