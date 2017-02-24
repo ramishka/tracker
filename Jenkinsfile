@@ -11,20 +11,17 @@ node {
             tokenv=f42fbf09691d29757203edf4ac940fe8d6df10f8xxxx
             tokenval=${tokenv::-4}
             sha1=$(git ls-remote --heads git@github.com:ramishka/tracker.git | grep "refs/heads/$BRANCH_NAME$" | awk '{print $1}')
-            PRNO=`grep -o '[0-9]*' <<< $sha1`
-            curl -s -H "Authorization: token $tokenval" https://api.github.com/repos/ramishka/tracker/pulls/$PRNO>gitjson.txt && COMMITSHA=$(python -c "import json; f=open('./gitjson.txt', 'r'); d=json.loads(f.read()); print(d['head']['sha'])")
-            rm gitjson.txt
-
-            curl -XPOST -H "Authorization: token $tokenval" https://api.github.com/repos/ramishka/tracker/statuses/$COMMITSHA -d '{
+            
+            curl -XPOST -H "Authorization: token $tokenval" https://api.github.com/repos/ramishka/tracker/statuses/$sha1 -d '{
                 "state": "pending",
-                "target_url": "http://all.creately.com:9000/job/PRValidator",
+                "target_url": "https://ci.createlyresources.com/job/Pull%20Request%20Sanitizers/job/ramishka-tracker/",
                 "description": "Linting started",
                 "context": "jenkins-ci-code-quality"
             }'
 
-            curl -XPOST -H "Authorization: token $tokenval" https://api.github.com/repos/ramishka/tracker/statuses/$COMMITSHA -d '{
+            curl -XPOST -H "Authorization: token $tokenval" https://api.github.com/repos/ramishka/tracker/statuses/$sha1 -d '{
                 "state": "pending",
-                "target_url": "http://all.creately.com:9000/job/PRValidator",
+                "target_url": "https://ci.createlyresources.com/job/Pull%20Request%20Sanitizers/job/ramishka-tracker/",
                 "description": "Started Testing",
                 "context": "jenkins-ci-unit-test"
             }'
